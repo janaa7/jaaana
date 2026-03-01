@@ -1,0 +1,16 @@
+name: Say Hi Jana
+
+on:
+  workflow_run:
+    workflows: ["Echo Hello World"]
+    types:
+      - completed
+
+jobs:
+  say-hi:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print Hi Jana
+        run: echo "Hi Jana"
